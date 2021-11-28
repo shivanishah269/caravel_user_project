@@ -7,7 +7,5 @@
 
 ## Please fill in your project documentation in this README.md file 
 
-
-Refer to [README](docs/source/index.rst) for this sample project documentation. 
-
 Demo test by Shivani Shah
+Test counter Example.
