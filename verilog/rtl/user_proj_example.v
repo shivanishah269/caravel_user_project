@@ -145,16 +145,19 @@ module counter #(
             ready <= 0;
         end else begin
             ready <= 1'b0;
-            if (^la_write) 
-                count <= w_data;            
-            else if (~la_write)
-                count <= la_write;            
-            else if (&la_write)
-                count <= la_input;
-            
-            rdata <= count;
-                
-           
+            if (~|la_write) begin
+                count <= count + 1;
+            end
+            if (valid && !ready) begin
+                ready <= 1'b1;
+                rdata <= count;
+                if (wstrb[0]) count[7:0]   <= wdata[7:0];
+                if (wstrb[1]) count[15:8]  <= wdata[15:8];
+                if (wstrb[2]) count[23:16] <= wdata[23:16];
+                if (wstrb[3]) count[31:24] <= wdata[31:24];
+            end else if (|la_write) begin
+                count <= la_write & la_input;
+            end
         end
     end
 
