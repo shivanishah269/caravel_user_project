@@ -43,13 +43,15 @@ module user_proj_example (
     
         input clk,reset,trace_ready,
 	input [31:0] mem_addr, 
-        output [19:0] L1_hit_count,L2_hit_count4,L2_hit_count8,L2_hit_count16,L2_ss1_count4,L2_ss1_count8,L2_ss1_count16,L2_ss2_count4,L2_ss2_count8,L2_ss2_count16
+        output [19:0] L1_hit_count,L2_hit_count4,L2_hit_count8,L2_hit_count16,L2_ss1_count4,L2_ss1_count8,L2_ss1_count16,L2_ss2_count4,L2_ss2_count8,L2_ss2_count16,
+	output updated
 );   
     	main cache (
 	    .clk(clk), 
 	    .reset(reset),
 	    .trace_ready(trace_ready),
 	    .mem_addr(mem_addr),
+	    .updated(updated),
 	    .L1_hit_count(L1_hit_count),
 	    .L2_hit_count4(L2_hit_count4),
 	    .L2_hit_count8(L2_hit_count8),
