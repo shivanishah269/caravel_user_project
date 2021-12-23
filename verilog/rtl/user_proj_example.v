@@ -41,10 +41,10 @@ module user_proj_example (
     inout vssd1,	// User area 1 digital ground
 `endif	
     
-    input clk,reset,trace_ready;
-    input [31:0] mem_addr; 
-    output [19:0] L1_hit_count,L2_hit_count4,L2_hit_count8,L2_hit_count16,L2_ss1_count4,L2_ss1_count8,L2_ss1_count16,L2_ss2_count4,L2_ss2_count8,L2_ss2_count16;
-    
+        input clk,reset,trace_ready,
+	input [31:0] mem_addr, 
+        output [19:0] L1_hit_count,L2_hit_count4,L2_hit_count8,L2_hit_count16,L2_ss1_count4,L2_ss1_count8,L2_ss1_count16,L2_ss2_count4,L2_ss2_count8,L2_ss2_count16
+);   
     	main cache (
 	    .clk(clk), 
 	    .reset(reset),
@@ -63,3 +63,5 @@ module user_proj_example (
     	);
 
 endmodule
+
+`default_nettype wire
