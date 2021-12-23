@@ -1,4 +1,4 @@
-module main(clk,reset,trace_ready,mem_addr,L1_hit_count,L2_hit_count4,L2_hit_count8,L2_hit_count16,L2_ss1_count4,L2_ss1_count8,L2_ss1_count16,L2_ss2_count4,L2_ss2_count8,L2_ss2_count16);
+module main(clk,reset,trace_ready,mem_addr,updated,L1_hit_count,L2_hit_count4,L2_hit_count8,L2_hit_count16,L2_ss1_count4,L2_ss1_count8,L2_ss1_count16,L2_ss2_count4,L2_ss2_count8,L2_ss2_count16);
 
     parameter L1_way = 4;
     parameter L1_block_size_byte = 16;
@@ -21,7 +21,7 @@ module main(clk,reset,trace_ready,mem_addr,L1_hit_count,L2_hit_count4,L2_hit_cou
     input [31:0] mem_addr;
     
     output [19:0] L1_hit_count,L2_hit_count4,L2_hit_count8,L2_hit_count16,L2_ss1_count4,L2_ss1_count8,L2_ss1_count16,L2_ss2_count4,L2_ss2_count8,L2_ss2_count16;
-    wire updated;    
+    output updated;    
     
     // variables to divide address in tag, index and offset for L1 cache
     wire [31-L1_set_index-L1_block_offset_index:0] L1_tag;
