@@ -88,35 +88,36 @@ user_proj_example mprj (
 	.vssd1(vssd1),	// User area 1 digital ground
 `endif
 
-    .wb_clk_i(wb_clk_i),
-    .wb_rst_i(wb_rst_i),
+	.clk(wb_clk_i),
+	.reset(la_data_in[0]),
+	.trace_ready(mem_data[1]),
+	.mem_addr(mem_data[33:2]),
+	.updated(),
+        .L1_hit_count(la_data_out[9:0]),
+        .L2_hit_count4(la_data_out[19:10]),
+        .L2_hit_count8(la_data_out[29:20]),
+        .L2_hit_count16(la_data_out[39:30]),
+        .L2_ss1_count4(la_data_out[49:40]),
+        .L2_ss1_count8(la_data_out[59:50]),
+        .L2_ss1_count16(la_data_out[69:60]),
+        .L2_ss2_count4(la_data_out[79:70]),
+        .L2_ss2_count8(la_data_out[89:80]),
+        .L2_ss2_count16(la_data_out[99:90])
 
-    // MGMT SoC Wishbone Slave
-
-    .wbs_cyc_i(wbs_cyc_i),
-    .wbs_stb_i(wbs_stb_i),
-    .wbs_we_i(wbs_we_i),
-    .wbs_sel_i(wbs_sel_i),
-    .wbs_adr_i(wbs_adr_i),
-    .wbs_dat_i(wbs_dat_i),
-    .wbs_ack_o(wbs_ack_o),
-    .wbs_dat_o(wbs_dat_o),
-
-    // Logic Analyzer
-
-    .la_data_in(la_data_in),
-    .la_data_out(la_data_out),
-    .la_oenb (la_oenb),
-
-    // IO Pads
-
-    .io_in (io_in),
-    .io_out(io_out),
-    .io_oeb(io_oeb),
-
-    // IRQ
-    .irq(user_irq)
 );
+	
+sram_32_256_sky130A mem (
+	`ifdef USE_POWER_PINS
+		.vccd1(vccd1),	// User area 1 1.8V supply
+		.vssd1(vssd1),	// User area 1 digital ground
+	`endif
+	.clk0(wb_clk_i),
+	.csb0(la_data_in[34]),
+	.web0(la_data_in[35]),
+	.addr0(),
+	.din0(la_data_in[33:1]),
+	.dout0(mem_data)
+    );
 
 endmodule	// user_project_wrapper
 
