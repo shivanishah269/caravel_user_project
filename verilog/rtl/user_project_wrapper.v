@@ -92,7 +92,7 @@ user_proj_example mprj (
 	.reset(la_data_in[0]),
 	.trace_ready(la_data_in[1]),
 	.mem_addr(mem_data),
-	.updated(),
+	.updated(la_data_out[100]),
         .L1_hit_count(la_data_out[9:0]),
         .L2_hit_count4(la_data_out[19:10]),
         .L2_hit_count8(la_data_out[29:20]),
