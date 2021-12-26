@@ -90,8 +90,8 @@ user_proj_example mprj (
 
 	.clk(wb_clk_i),
 	.reset(la_data_in[0]),
-	.trace_ready(mem_data[1]),
-	.mem_addr(mem_data[33:2]),
+	.trace_ready(la_data_in[1]),
+	.mem_addr(mem_data),
 	.updated(),
         .L1_hit_count(la_data_out[9:0]),
         .L2_hit_count4(la_data_out[19:10]),
@@ -114,8 +114,8 @@ sram_32_256_sky130A mem (
 	.clk0(wb_clk_i),
 	.csb0(la_data_in[34]),
 	.web0(la_data_in[35]),
-	.addr0(),
-	.din0(la_data_in[33:1]),
+	.addr0(la_data_in[45:36]),
+	.din0(la_data_in[33:2]),
 	.dout0(mem_data)
     );
 
