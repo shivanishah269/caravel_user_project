@@ -20,22 +20,20 @@
 `include "uprj_netlists.v"
 `include "caravel_netlists.v"
 `include "spiflash.v"
-`include "tbuart.v"
 
-module la_test1_tb;
+module la_test_tb;
 	reg clock;
-    reg RSTB;
+	reg RSTB;
 	reg CSB;
 
 	reg power1, power2;
 
-    	wire gpio;
-	wire uart_tx;
-    	wire [37:0] mprj_io;
+    wire gpio;
+    wire [37:0] mprj_io;
 	wire [15:0] checkbits;
 
-	assign checkbits  = mprj_io[31:16];
-	assign uart_tx = mprj_io[6];
+	assign checkbits = mprj_io[31:16];
+	assign mprj_io[3] = (CSB == 1'b1) ? 1'b1 : 1'bz;
 
 	always #12.5 clock <= (clock === 1'b0);
 
@@ -43,41 +41,39 @@ module la_test1_tb;
 		clock = 0;
 	end
 
-	assign mprj_io[3] = (CSB == 1'b1) ? 1'b1 : 1'bz;
-
 	initial begin
-		// $dumpfile("la_test1.vcd");
-		// $dumpvars(0, la_test1_tb);
+		$dumpfile("la_test.vcd");
+		$dumpvars(0, la_test_tb);
 
 		// Repeat cycles of 1000 clock edges as needed to complete testbench
-		repeat (200) begin
+		// Clock preiod is 25ns => 60 * 1000 * 25 = 1,500,000ns (whole simulation time)
+		repeat (60) begin
 			repeat (1000) @(posedge clock);
 			// $display("+1000 cycles");
 		end
 		$display("%c[1;31m",27);
 		`ifdef GL
-			$display ("Monitor: Timeout, Test LA (GL) Failed");
+			$display ("Monitor: Timeout, Test Mega-Project IO (GL) Failed");
 		`else
-			$display ("Monitor: Timeout, Test LA (RTL) Failed");
+			$display ("Monitor: Timeout, Test Mega-Project IO (RTL) Failed");
 		`endif
 		$display("%c[0m",27);
 		$finish;
 	end
 
 	initial begin
-		wait(checkbits == 16'hAB40);
-		$display("LA Test 1 started");
-		wait(checkbits == 16'hAB41);
-		wait(checkbits == 16'hAB51);
-		#10000;
+		wait(checkbits == 16'h AB60);
+		$display("Monitor: Test 2 MPRJ-Logic Analyzer Started");
+		wait(checkbits == 16'h AB61);
+		$display("Monitor: Test 2 MPRJ-Logic Analyzer Passed");
 		$finish;
 	end
 
 	initial begin
 		RSTB <= 1'b0;
-		CSB  <= 1'b1;		// Force CSB high
+		CSB  <= 1'b1;	// Force CSB high
 		#2000;
-		RSTB <= 1'b1;	    	// Release reset
+		RSTB <= 1'b1;	// Release reset
 		#170000;
 		CSB = 1'b0;		// CSB can be released
 	end
@@ -121,7 +117,7 @@ module la_test1_tb;
 		.vssd2	  (VSS),
 		.clock	  (clock),
 		.gpio     (gpio),
-        	.mprj_io  (mprj_io),
+        .mprj_io  (mprj_io),
 		.flash_csb(flash_csb),
 		.flash_clk(flash_clk),
 		.flash_io0(flash_io0),
@@ -130,19 +126,14 @@ module la_test1_tb;
 	);
 
 	spiflash #(
-		.FILENAME("la_test1.hex")
+		.FILENAME("la_test.hex")
 	) spiflash (
 		.csb(flash_csb),
 		.clk(flash_clk),
 		.io0(flash_io0),
 		.io1(flash_io1),
-		.io2(),			// not used
-		.io3()			// not used
-	);
-
-	// Testbench UART
-	tbuart tbuart (
-		.ser_rx(uart_tx)
+		.io2(),
+		.io3()
 	);
 
 endmodule
