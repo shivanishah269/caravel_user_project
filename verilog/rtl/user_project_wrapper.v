@@ -89,20 +89,20 @@ user_proj_example mprj (
 `endif
 
 	.clk(wb_clk_i),
-	.reset(la_data_in[0]),
-	.trace_ready(la_data_in[1]),
+	.reset(la_data_in[42]),
+	.trace_ready(la_data_in[43]),
 	.mem_addr(mem_data),
-	.updated(la_data_out[100]),
-        .L1_hit_count(la_data_out[9:0]),
-        .L2_hit_count4(la_data_out[19:10]),
-        .L2_hit_count8(la_data_out[29:20]),
-        .L2_hit_count16(la_data_out[39:30]),
-        .L2_ss1_count4(la_data_out[49:40]),
-        .L2_ss1_count8(la_data_out[59:50]),
-        .L2_ss1_count16(la_data_out[69:60]),
-        .L2_ss2_count4(la_data_out[79:70]),
-        .L2_ss2_count8(la_data_out[89:80]),
-        .L2_ss2_count16(la_data_out[99:90])
+	.updated(la_data_out[127]),
+        .L1_hit_count(la_data_out[55:46]),
+        .L2_hit_count4(la_data_out[63:56]),
+        .L2_hit_count8(la_data_out[71:64]),
+        .L2_hit_count16(la_data_out[79:72]),
+        .L2_ss1_count4(la_data_out[87:80]),
+        .L2_ss1_count8(la_data_out[95:88]),
+        .L2_ss1_count16(la_data_out[103:96]),
+        .L2_ss2_count4(la_data_out[111:104]),
+        .L2_ss2_count8(la_data_out[119:112]),
+        .L2_ss2_count16(la_data_out[126:120])
 
 );
 	
@@ -112,10 +112,10 @@ sram_32_256_sky130A mem (
 		.vssd1(vssd1),	// User area 1 digital ground
 	`endif
 	.clk0(wb_clk_i),
-	.csb0(la_data_in[34]),
-	.web0(la_data_in[35]),
-	.addr0(la_data_in[45:36]),
-	.din0(la_data_in[33:2]),
+	.csb0(la_data_in[44]),
+	.web0(la_data_in[45]),
+	.addr0(la_data_in[41:32]),
+	.din0(la_data_in[31:0]),
 	.dout0(mem_data)
     );
 
