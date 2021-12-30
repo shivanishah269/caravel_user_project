@@ -3206,7 +3206,7 @@ void main()
       }
 
         // Wait for the expected result
-        while (((reg_la1_data & 0x00FFC000) != 0x) && ((reg_la1_data & 0xFF000000) != 0x) && ((reg_la2_data & 0x000000FF) != 0x) && ((reg_la2_data & 0x0000FF00) != 0x) && ((reg_la2_data & 0x00FF0000) != 0x) && ((reg_la2_data & 0xFF000000) != 0x) && ((reg_la3_data & 0x000000FF) != 0x) && ((reg_la3_data & 0x0000FF00) != 0x) && ((reg_la3_data & 0x00FF0000) != 0x) && ((reg_la2_data & 0x7F000000) != 0x)); // L1 hit count, L2 hit count4, L2 hit count8, L2 hit count16, L2 ss1 count4, L2 ss1 count 8, L2 hit count16, L2 ss2 hit count4, L2 ss2 count8, L2 ss2 count16.
+        while (((reg_la1_data & 0x00FFC000) != 0x3d6) && ((reg_la1_data & 0xFF000000) != 0x0) && ((reg_la2_data & 0x000000FF) != 0x0) && ((reg_la2_data & 0x0000FF00) != 0x0) && ((reg_la2_data & 0x00FF0000) != 0x0) && ((reg_la2_data & 0xFF000000) != 0x0) && ((reg_la3_data & 0x000000FF) != 0x0) && ((reg_la3_data & 0x0000FF00) != 0x0) && ((reg_la3_data & 0x00FF0000) != 0x0) && ((reg_la2_data & 0x7F000000) != 0x0)); // L1 hit count, L2 hit count4, L2 hit count8, L2 hit count16, L2 ss1 count4, L2 ss1 count 8, L2 hit count16, L2 ss2 hit count4, L2 ss2 count8, L2 ss2 count16.
         
         // Test has been done successfully
 	reg_mprj_datal = 0xAB610000;
