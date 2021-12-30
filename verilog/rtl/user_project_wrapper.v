@@ -106,7 +106,7 @@ user_proj_example mprj (
 
 );
 	
-sram_32_256_sky130A mem (
+sram_32_1024_sky130A mem (
 	`ifdef USE_POWER_PINS
 		.vccd1(vccd1),	// User area 1 1.8V supply
 		.vssd1(vssd1),	// User area 1 digital ground
