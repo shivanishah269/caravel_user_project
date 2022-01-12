@@ -27,7 +27,7 @@ set ::env(VERILOG_FILES) "\
 set ::env(DESIGN_IS_CORE) 0
 
 set ::env(CLOCK_PORT) "wb_clk_i"
-set ::env(CLOCK_NET) "counter.clk"
+set ::env(CLOCK_NET) " "
 set ::env(CLOCK_PERIOD) "10"
 
 set ::env(FP_SIZING) absolute

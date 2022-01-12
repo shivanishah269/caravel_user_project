@@ -46,10 +46,10 @@ module la_test_tb;
 		$dumpvars(0, la_test_tb);
 
 		// Repeat cycles of 1000 clock edges as needed to complete testbench
-		// Clock preiod is 25ns => 60 * 1000 * 25 = 1,500,000ns (whole simulation time)
+		// Clock period is 25ns => 60 * 1000 * 25 = 1,500,000ns (whole simulation time)
 		repeat (60) begin
 			repeat (1000) @(posedge clock);
-			// $display("+1000 cycles");
+			 $display("+1500 cycles");
 		end
 		$display("%c[1;31m",27);
 		`ifdef GL

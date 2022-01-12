@@ -28,6 +28,8 @@
  *
  *-------------------------------------------------------------
  */
+//`include "user_proj_example.v"
+`include "sram_32_1024_sky130A.v"
 
 module user_project_wrapper #(
     parameter BITS = 32
@@ -77,7 +79,7 @@ module user_project_wrapper #(
     // User maskable interrupt signals
     output [2:0] user_irq
 );
-
+//wire [31:0] mem_data;
 /*--------------------------------------*/
 /* User project is instantiated  here   */
 /*--------------------------------------*/
@@ -90,11 +92,11 @@ user_proj_example mprj (
 
 	.clk(wb_clk_i),
 	.reset(la_data_in[42]),
-	.trace_ready(la_data_in[43]),
-	.mem_addr(mem_data),
-	.updated(la_data_out[127]),
-        .L1_hit_count(la_data_out[55:46]),
-        .L2_hit_count4(la_data_out[63:56]),
+	//.trace_ready(la_data_in[43]),
+	//.mem_addr(mem_data),
+	//.updated(la_data_out[127]),
+        .L1_hit_count(la_data_out[55:46])
+        /*.L2_hit_count4(la_data_out[63:56]),
         .L2_hit_count8(la_data_out[71:64]),
         .L2_hit_count16(la_data_out[79:72]),
         .L2_ss1_count4(la_data_out[87:80]),
@@ -102,10 +104,10 @@ user_proj_example mprj (
         .L2_ss1_count16(la_data_out[103:96]),
         .L2_ss2_count4(la_data_out[111:104]),
         .L2_ss2_count8(la_data_out[119:112]),
-        .L2_ss2_count16(la_data_out[126:120])
+        .L2_ss2_count16(la_data_out[126:120])*/
 
 );
-	
+/*	
 sram_32_1024_sky130A mem (
 	`ifdef USE_POWER_PINS
 		.vccd1(vccd1),	// User area 1 1.8V supply
@@ -118,7 +120,9 @@ sram_32_1024_sky130A mem (
 	.din0(la_data_in[31:0]),
 	.dout0(mem_data)
     );
-
+*/
 endmodule	// user_project_wrapper
 
 `default_nettype wire
+
+
