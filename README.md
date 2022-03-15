@@ -7,3 +7,4 @@ You can find more details about our project over here: [FPGA Accelerated Multi-C
 We have integrated a L1 Cache module with the picoRV32 core on the user project area of Caravel platform. We have integrated a smaller version of the 4-way set associative 512B L1 cache as user project area in caravel SoC has limited silicon area of 2.92mm x 3.52mm. We have used Logic Analyzer (LA) to probe the output (hit metric of L1 cache).
 
 
+<a href = "url"><img src = "https://user-images.githubusercontent.com/15063738/158312888-f4e65a2f-1dce-4c08-83eb-4053ac25368b.png" width="800">
